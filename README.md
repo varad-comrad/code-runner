@@ -1,5 +1,5 @@
 # code-runner
-personal code runner
+personal code runner in Zig
 
 ## How to use
 
@@ -12,3 +12,9 @@ personal code runner
 
 - If you're using VS Code extension:
   ...
+  
+- If you're using code runner's shell:
+  1. Use code-runner startproject name/of/dir to start code-runner's virtual environment on that shell
+  2. use 'run' to run project, 'bench' to benchmark it, 'debug' to debug it or 'test' to test it
+  3. you can use 'run/test/bench/debug name/of/file' to run/test/... a particular file in that project
+  4. (...)
