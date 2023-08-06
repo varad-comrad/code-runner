@@ -18,3 +18,41 @@ personal code runner in Zig
   2. use 'run' to run project, 'bench' to benchmark it, 'debug' to debug it or 'test' to test it
   3. you can use 'run/test/bench/debug name/of/file' to run/test/... a particular file in that project
   4. (...)
+
+
+Rust:
+
+If cargo.toml exists:
+  cargo run/test/bench
+Else:
+  rustc file && ./file
+
+
+Python:
+
+If ...
+  python main.py
+Else:
+  python file
+
+
+C/C++:
+
+Using cmake 
+
+Not using cmake 
+
+
+C#:
+
+
+Zig:
+
+
+Go:
+
+
+Java:
+
+
+Kotlin:
