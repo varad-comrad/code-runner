@@ -29,6 +29,7 @@ Else:
 
 
 Python:
+Automatically deduces what kind of project it's running (django, data science, ...)
 
 If ...
   python main.py
@@ -56,3 +57,7 @@ Java:
 
 
 Kotlin:
+
+
+JS:
+J
