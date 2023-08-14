@@ -1,5 +1,5 @@
 # code-runner
-personal code runner in Zig
+personal code runner in Rust
 
 ## How to use
 
