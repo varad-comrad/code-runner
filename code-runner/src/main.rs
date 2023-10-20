@@ -1,11 +1,11 @@
-use std::{io::Result, path};
+use std::{io::Result, path, collections::HashMap};
 extern crate clap;
 use clap::{Parser};
 
 extern crate serde;
+extern crate serde_json;
 use serde::{Deserialize, Serialize};
 
-extern crate serde_json;
 
 #[derive(Parser, Debug)]
 #[command(author="varad-comrad", version="0.0.1", about="code runner in rust", long_about = None)]
@@ -29,33 +29,18 @@ struct Args{
     build: bool
 }
 
-struct DirectoryExecutorMap{
-    
+
+#[derive(Debug, Serialize, Deserialize)]
+struct CodeRunnerConfig{
+    DirectoryExecutorMap: HashMap<String, String>,
+    FileExecutorMap: HashMap<String, String>,
+    DirectoryTestMap: HashMap<String, String>,
+    DirectoryBenchMap: HashMap<String, String>,
+    DirectoryDebugMap: HashMap<String, String>,
+    DirectoryBuildMap: HashMap<String, String>,
+    FileBuildMap: HashMap<String, String>,
 }
 
-struct DirectoryTestMap{
-    
-}
-
-struct DirectoryBenchMap{
-    
-}
-
-struct DirectoryDebugMap{
-    
-}
-
-struct FileExecutorMap{
-
-}
-
-struct DirectoryBuildMap{
-
-}
-
-struct FileBuildMap{
-
-}
 
 fn execute_dir(path: &path::Path, cwd: &path::Path) -> Result<()>{
     
@@ -79,13 +64,21 @@ fn debug(path: &path::Path, cwd: &path::Path) -> Result<()>{
     Ok(())
 }
 
+fn build_file(path: &path::Path, cwd: &path::Path) -> Result<()>{
+    Ok(())
+}
+
+fn build_dir(path: &path::Path, cwd: &path::Path) -> Result<()>{
+    Ok(())
+}
+
 fn main() -> Result<()>{
     let cli = Args::parse();
     let (path, cwd) = (path::Path::new(&cli.path),path::Path::new(&cli.cwd));
-    
-    if cli.debug as i32 + cli.bench as i32 + cli.test as i32 > 1{
+
+    if cli.debug as i32 + cli.bench as i32 + cli.test as i32 + cli.build as i32 > 1{
         // Find a better way to do this
-        panic!("Only one of --debug, --bench, --test can be used at a time")
+        panic!("Only one of --debug, --bench, --test  and --build can be used at a time")
     }
 
     if cli.debug{
@@ -94,10 +87,18 @@ fn main() -> Result<()>{
         bench(path, cwd)?;
     } else if cli.test{
         test(path, cwd)?;
-    } else if path.is_file(){
-        execute_file(path, cwd)?;
-    } else{
-        execute_dir(path, cwd)?;
+    } else if !cli.build{
+        if path.is_file(){
+            execute_file(path, cwd)?;
+        } else{
+            execute_dir(path, cwd)?;
+        }
+    } else {
+        if path.is_file(){
+            build_file(path, cwd)?;
+        } else{
+            build_dir(path, cwd)?;
+        }
     }
     Ok(())
 }
