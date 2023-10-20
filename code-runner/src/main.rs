@@ -23,10 +23,43 @@ struct Args{
     bench: bool,
 
     #[arg(long, default_value=None)]
-    test: bool
+    test: bool,
+
+    #[arg(long, default_value=None)]
+    build: bool
+}
+
+struct DirectoryExecutorMap{
+    
+}
+
+struct DirectoryTestMap{
+    
+}
+
+struct DirectoryBenchMap{
+    
+}
+
+struct DirectoryDebugMap{
+    
+}
+
+struct FileExecutorMap{
+
+}
+
+struct DirectoryBuildMap{
+
+}
+
+struct FileBuildMap{
+
 }
 
 fn execute_dir(path: &path::Path, cwd: &path::Path) -> Result<()>{
+    
+    let ext = path.extension();
     Ok(())
 }
 
