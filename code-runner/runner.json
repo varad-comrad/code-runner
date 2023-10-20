@@ -1,0 +1,66 @@
+{
+    "FileExecutorMap":{
+        "py": "python {}",
+        "c": "gcc {} -o {} && ./{}",
+        "cpp": "g++ {} -o {} && ./{}",
+        "rs": "rustc {} && ./{}",
+        "java": "javac {} && java {}",
+        "js": "node {}",
+        "ts": "ts-node {}",
+        "kt": "kotlinc {} && java {}",
+        "kts": "kotlin -script {}",
+        "jl": "jl {}",
+        "nim": "nim compile --verbosity:0 --hints:off --run {}",
+        "csproj": "dotnet run --project {}",
+        "go": "go run {}",
+        "zig": "zig run {}",
+        "v": "v run {}",
+        "rb": "ruby {}",
+        "sh": "bash {}",
+        "r": "Rscript {}"
+    },
+     
+    "DirectoryExecutorMap": {
+        "__main__.py": "python {}",
+        "main.py": "python {}",
+        "manage.py": "python manage.py runserver",
+        "pyproject.toml": "poetry run python {}",
+        "cargo.toml": "cargo run",
+        "main.cpp": "make {} && ./{}"
+    },
+     
+    "DirectoryTestMap": {
+        "cargo.toml": "cargo test"
+    },
+
+    "DirectoryBenchMap": {
+        "cargo.toml": "cargo bench"
+    },
+    
+    "DirectoryDebugMap": {
+        
+    },
+    
+    "FileBuildMap": {
+        "py": "python {}",
+        "c": "gcc {} -o {}",
+        "cpp": "g++ {} -o {}",
+        "rs": "rustc {}",
+        "java": "javac {}",
+        "kt": "kotlinc {}",
+        "kts": "kotlin -script {}",
+        "nim": "nim compile --verbosity:0 --hints:off {}",
+        "csproj": "dotnet run --project {}",
+        "go": "go build {}",
+        "zig": "zig build-exe {}",
+        "v": "v build {}"
+    },
+    
+    "DirectoryBuildMap": {
+        "cargo.toml": "cargo build",
+        "main.go": "go build",
+        "main.cpp": "make {}",
+        "main.c": "make {}"
+    }
+}
+
