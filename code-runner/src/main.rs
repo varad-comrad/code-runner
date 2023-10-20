@@ -1,4 +1,4 @@
-use std::{io::Result, path, collections::HashMap};
+use std::{io::Result, path, collections::HashMap, env};
 extern crate clap;
 use clap::{Parser};
 
@@ -42,9 +42,17 @@ struct CodeRunnerConfig{
 }
 
 
-fn execute_dir(path: &path::Path, cwd: &path::Path) -> Result<()>{
+fn base_operation<'a,'b>(path: &'a path::Path, cwd: &'b path::Path) -> Result<((String, &'a path::Path,HashMap<String, String>))>{
+    let ext = path.extension().unwrap().to_str().unwrap_or("");
+    let full_path = cwd.join(path).as_path();
+    let current_dir = env::current_dir()?.as_path().to_str().unwrap_or("");
+    let config_path = path::Path::new(current_dir).parent().unwrap().join("runner.json");
     
-    let ext = path.extension();
+}
+
+fn execute_dir(path: &path::Path, cwd: &path::Path) -> Result<()>{
+    let (extension, full_path, map) = base_operation(path, cwd)?;
+    
     Ok(())
 }
 
